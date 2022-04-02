@@ -24,8 +24,8 @@ int calculation(char oper, int a, int b) {
         if (a != 0)
             return b / a;
     default: return 0;
-    }   
-} 
+    }
+}
 std::string infx2pstfx(std::string inf) {
   std::string outp;
     char probel = ' ';
@@ -34,26 +34,21 @@ std::string infx2pstfx(std::string inf) {
         if (priority(inf[i]) == 4) {
             outp.push_back(inf[i]);
             outp.push_back(probel);
-        }
-        else {
+        } else {
             if (priority(inf[i]) == 0) {
                 stack1.push(inf[i]);
-            }
-            else if (stack1.isEmpty()) {
+            } else if (stack1.isEmpty()) {
                 stack1.push(inf[i]);
-            }
-            else if ((priority(inf[i]) > priority(stack1.get()))) {
+            } else if ((priority(inf[i]) > priority(stack1.get()))) {
                 stack1.push(inf[i]);
-            }
-            else if (priority(inf[i]) == 1) {
+            } else if (priority(inf[i]) == 1) {
                 while (priority(stack1.get()) != 0) {
                     outp.push_back(stack1.get());
                     outp.push_back(probel);
                     stack1.pop();
                 }
                 stack1.pop();
-            }
-            else {
+            } else {
                 while (!stack1.isEmpty() && (priority(inf[i]) <= priority(stack1.get()))) {
                     outp.push_back(stack1.get());
                     outp.push_back(probel);
@@ -80,8 +75,7 @@ int eval(std::string pref) {
     for (int i = 0; i < pref.size(); i++) {
         if (priority(pref[i]) == 4) {
             stack2.push(pref[i] - '0');
-        }
-        else if (priority(pref[i]) < 4) {
+        } else if (priority(pref[i]) < 4) {
             int a = stack2.get();
             stack2.pop();
             int b = stack2.get();
